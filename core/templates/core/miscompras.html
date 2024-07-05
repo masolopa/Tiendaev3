@@ -3,13 +3,7 @@
 {% load custom_filters %}
 
 {% block content %}
-    
-    <div class="instrucciones-para-el-alumno">
-        INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-        - Puedes probar una boleta con el siguiente link<br><br>
-        &nbsp;&nbsp;&nbsp;
-        <a href="{% url 'boleta' 1 %}">Ver boleta 1</a><br><br>
-    </div>
+
     
 
 
@@ -17,8 +11,8 @@
     <table id="tabla-principal" class="table table-hover">
         <thead>
             <tr>
-                <td> {{ boleta.nro_boleta }} </td>
-                <td> {{ boleta.fecha_venta|formatear_fecha }} </td>
+                <td> {{boleta.nro_boleta}} </td>
+                <td> {{boleta.fecha_venta|formatear_fecha}} </td>
                 <td> {{ boleta.fecha_despacho|formatear_fecha }} </td>
                 <td> {{ boleta.fecha_entrega|formatear_fecha }} </td>
                 <td> {{ boleta.total_a_pagar }} </td>

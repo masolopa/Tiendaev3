@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    
+    <table id="tabla-principal" class="table table-hover">
+        <div class="container my-5">         
+             <thead>
+         
+              <tr>
+         
+               <th scope="col">{{boleta.nro_boleta}}</th>
+         
+               <th scope="col">{{boleta.fecha_venta|formatear_fecha}}</th>
+         
+               <th scope="col">{{boleta.nom_cliente}}</th>
+         
+               <th scope="col">{{boleta.subscrito}}</th>
+         
+               <th scope="col">{{boleta.total_a_pagar|formatear_dinero}}</th>
+         
+               <th scope="col">{{boleta.fecha_despacho|formatear_fecha}}</th>
+         
+               <th scope="col">{{boleta.fecha_entrega|formatear_fecha}}</th>
+         
+               <th scope="col">{{boleta.estado}}</th>
+         
+              </tr>
+         
+             </thead>
+         
+         
+         
+    </table>
+         
+         
+        <tbody>
+            {% for boleta in historial %}
+                {% if boleta.estado == 'Anulado' %}
+                    <tr class="letra-boleta-anulada"> 
+                {% else %}
+                    <tr>
+                {% endif %}
+
+                    <td>
+                        <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
+                    </td>
+                    <td>
+                        <span>
+                            <div class="btn-group">
+                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
+                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
+                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-primary">Despachar</a>
+                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-secondary">Entregar</a>
+                            </div>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>       
+    </table>
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+  
+
+<div class="container">
+  <h1>Nosotros</h1>
+
+  <p>
+    Class Domain, fue fundada por los entusiastas de la moda Carlos Molina y Macarena Lobos, 
+    es el hogar de la elegancia atemporal y el estilo vanguardista. 
+    Con una cuidadosa selección de prendas de alta calidad, 
+    ofrecemos a nuestros clientes la oportunidad de expresar su individualidad con confianza y estilo. 
+    Únete a nosotros y descubre un mundo donde la moda se convierte en una declaración de tu personalidad.
+  </p>
+
+  <p>
+    Nuestra visión es transformar la forma en que las personas experimentan la moda. 
+    Nos esforzamos por ser reconocidos como el destino definitivo para aquellos que buscan más que simples prendas de vestir; 
+    aspiramos a ser una fuente de inspiración y confianza para cada individuo que elija nuestro estilo.
+  </p>
+
+  <p>
+    Conoce a los fundadores
+  </p>
+  <div class="row">
+    <div class="col me-4 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'core/img/Gerente2.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Gerente</h5>
+          <p class="card-text">Carlos Molina</p>
+          <p class="card-text">Experto en diseño y tendencias de moda, Carlos Molina es el cofundador y gerente de Class Domain. Su pasión por la moda y su visión única han sido la fuerza impulsora detrás del éxito de nuestra marca.</p>
+          <a href="#" class="btn btn-primary boton">Saber más</a>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'core/img/Gerente.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Gerente General</h5>
+          <p class="card-text">Macarena Lobos</p>
+          <p class="card-text">Con una visión innovadora y un ojo para el detalle, Macarena Lobos es la cofundadora y gerente general de Class Domain. Su compromiso con la excelencia y la creatividad ha establecido el estándar para nuestro enfoque en la moda de vanguardia.</p>
+          <a href="#" class="btn btn-primary boton">Saber más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static %}
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'usuarios'%}"
+            >Mantenedor de Usuarios</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'productos'%}"
+            >Mantenedor de Productos</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'ventas'%}">Historial de Ventas</a>
+        </li>
+        <li>
+          <a href="{% url 'bodega'%}">Mantenedor de Bodega</a>
+        </li>
+      </ul>
+    </nav>
+

@@ -1,0 +1,116 @@
+th {
+  vertical-align: top;
+  background-color: lightgray !important;
+}
+
+input, textarea, select {
+  border-color: darkgray !important; /* Cambia "red" al color deseado */
+}
+
+.navbar{
+  background-color:  rgb(253, 181, 209);
+}
+body {
+  padding: 10px;
+}
+
+h1 {
+  color: rgb(235, 89, 145);
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 700;
+  
+}
+
+h5 {
+  font-weight: 800;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+
+
+
+.boton {
+  width: 200px;
+  margin: auto;
+  background-color: rgb(207, 125, 170);
+  border-color: rgb(207, 125, 170);
+}
+.cuadro_login {
+  width: 40%;
+  margin: auto;
+  border: 1px solid gray;
+}
+
+#boleta_tabla_estados {
+  float: right;
+}
+
+#boleta_tabla_estados td {
+  padding-right: 20px;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.ficha_foto {
+  height: 100%;
+  float: right;
+  border: 3px solid gray;
+}
+
+.ficha_titulo {
+  font-size: 60px;
+  font-weight: bolder;
+}
+
+.ficha_disponible {
+  color: green;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.ficha_precio {
+  font-size: 40px;
+}
+.ficha_descripcion {
+  font-size:20px ;
+}
+.main_container div {
+  width: 300px;
+  height: 300px;
+}
+
+.usuario_foto {
+  float: right;
+
+}
+.registro_foto {
+  float: left;
+}
+
+
+label{
+  font-weight: bolder;
+
+}
+.error{
+  color:red;
+  font-weight: bolder;
+}
+
+/* Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
+/* div {
+  border: 1px solid blue;
+} */

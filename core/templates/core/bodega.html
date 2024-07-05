@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+    <!-- 
+        AREA DE DATOS BASICOS: combobox de categoría, combobox de producto y cantidad.
+        El Combobox de Producto se carga dependiendo del valor el Combobox de Categoría,
+        para ello se usa jquery y ajax.
+        (VER COMENTARIO "COMBOBOX DEPENDIENTES PARA CATEGORIA Y PRODUCTO" en bodega.js)
+    -->
+
+    <form id="form" method="POST">
+
+        {% csrf_token %}
+
+
+        <form id="form-bodega" name="form-bodega" novalidate>
+            <div class="container-fluid">
+              <!-- Datos del producto y su foto -->
+              <div class="row">
+                <!-- Datos del producto a ingresar a la bodega -->
+                <div class="col-sm-12 col-md-6">
+                  <div class="mb-3">
+                    <label for="categoria" class="form-label"> Categoría </label>
+                    <select
+                      name="categoria"
+                      id="categoria"
+                      class="form-select"
+                      aria-label="Selecciona la categoría"
+                    >
+                      <option selected value="">Selecciona la categoría</option>
+                      <option value="1">Top</option>
+                      <option value="2">Bottom</option>
+                      <option value="3">Calzado</option>
+                    </select>
+                  </div>
+      
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">
+                      Nombre del producto
+                    </label>
+                    <select
+                      id="nombre"
+                      name="nombre"
+                      class="form-select"
+                      aria-label="Selecciona el nombre de la prenda"
+                    >
+                      <option selected value="">
+                        Selecciona el nombre de la prenda
+                      </option>
+                      <option value="1">Pantalón de jeans</option>
+                      <option value="2">Chaleco de punto</option>
+                      <option value="3">Botines de cuero sintético</option>
+                    </select>
+                  </div>
+      
+                  <div class="mb-3">
+                    <div class="col col-xl-6 col-lg-4 col-md-5 col-sm-12">
+                      <label for="cantidad" class="form-label">Cantidad</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="cantidad"
+                        name="cantidad"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+        {{ form|as_bootstrap_form }}
+
+        <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}">
+        
+    </form>
+
+    <!-- AREA DE TABLA DE PRODUCTOS -->
+
+    {% if productos %}
+
+        
+        <table id="tabla-principal" class="table table-hover">
+            <thead>
+                <!-- AREA DE TITULOS DE LA TABLA -->
+                <tr>
+                    <th>ID</th>
+                    <th>{{item.bodega.producto.categoria.nombre}}</th>
+                    <th>{{item.bodega.producto.nombre}}</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                  </tr>
+            </thead>
+            <tbody>
+                <!-- AREA DE FILAS DE PRODUCTOS -->
+                {% for producto in productos %}
+                    <tr>
+                        <td>
+                            <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
+                        </td>
+                        <!-- Botón de eliminar producto de bodega, se activa sólo para productos no vendidos -->
+                        <td>
+                            {% if producto.estado == 'En bodega' %}
+                                <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" 
+                                    class="btn btn-danger btn-sm"> Eliminar </a>
+                            {% else %}
+                                <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" 
+                                    class="btn btn-primary btn-sm disabled"> Eliminar </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+{% endblock content %}
+
+{% block script %}
+    <input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
+    <script src="{% static 'core/js/bodega.js' %}"></script>
+{% endblock script %}

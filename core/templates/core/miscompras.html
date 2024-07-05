@@ -3,7 +3,7 @@
 {% load custom_filters %}
 
 {% block content %}
-
+    
     
 
 
@@ -11,12 +11,12 @@
     <table id="tabla-principal" class="table table-hover">
         <thead>
             <tr>
-                <td> {{boleta.nro_boleta}} </td>
-                <td> {{boleta.fecha_venta|formatear_fecha}} </td>
-                <td> {{ boleta.fecha_despacho|formatear_fecha }} </td>
-                <td> {{ boleta.fecha_entrega|formatear_fecha }} </td>
-                <td> {{ boleta.total_a_pagar }} </td>
-                <td> {{ boleta.estado }} </td>
+                <th> Nro boleta </th>
+                <th> Venta </th>
+                <th> Despacho </th>
+                <th> Entrega </th>
+                <th> Monto total </th>
+                <th> Estado actual </th>
                 <th> Opciones </th>
             </tr>
         </thead> 
@@ -27,7 +27,12 @@
                 {% else %}
                     <tr>
                 {% endif %}
-
+                    <td> {{ boleta.nro_boleta }} </td>
+                    <td> {{ boleta.fecha_venta|formatear_fecha }} </td>
+                    <td> {{ boleta.fecha_despacho|formatear_fecha }} </td>
+                    <td> {{ boleta.fecha_entrega|formatear_fecha }} </td>
+                    <td> {{ boleta.total_a_pagar }} </td>
+                    <td> {{ boleta.estado }} </td>
                     <td>
                         <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
                     </td>

@@ -23,7 +23,7 @@ $(document).ready(function() {
   // 1. Ocultar la etiqueta que acompaña al botón de "Seleccionar archivo" (el clásico botón input type file)
   // 2. Mueve el botón de "Seleccionar archivo" debajo del "cuadro_imagen" que es el "img" que muestra la foto
   // 3. Oculta parcialmente el botón de "Seleccionar archivo", así el error de jquery validate 
-  //    se mostrará debajo de la imagen cuando el usuario no haya seleccionado alguna.
+  //    se mostrará debajo de la imagen cuando el usuario no haya seleccionado alguna.(NO ME SALIÓ NADA)
   // 4. En la página que usa el botón de "Seleccionar archivo" se debe poner otro en su reemplazo
   if ($('#id_imagen').length > 0) {
     $("label[for='id_imagen']").hide();

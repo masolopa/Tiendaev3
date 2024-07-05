@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   // Asignar placeholders para ayudar a los usuarios
   $('#id_username').attr('placeholder', 'Ej: Mlobos,Cmolina');
-  $('#id_first_name').attr('placeholder', 'Ej: Carlos, Macarema');
+  $('#id_first_name').attr('placeholder', 'Ej: Carlos, MacareNa');
   $('#id_last_name').attr('placeholder', 'Ej: Molina, Lobos, Parra');
   $('#id_email').attr('placeholder', 'Ej: alumnado@duocuc.cl');
   $('#id_password1').attr('placeholder', '8 caracteres como mínimo');

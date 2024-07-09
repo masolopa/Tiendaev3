@@ -20,12 +20,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'core/css/style.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'core/css/page-layout.css' %}">
 
-    <!-- 
 
-    INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):
-      - PEGA AQUI TUS HOJAS DE ESTILO COMPARTIDAS
-
-    -->
 
     <!-- BLOQUE DE ESTILOS CSS PERSONALIZADOS PARA CADA PAGINA -->
     {% block stylesheet %}
@@ -42,10 +37,11 @@
 
 
   <!-- BLOQUE DE MENU SUPERIOR COMPARTIDO POR TODAS LAS PAGINAS -->
-  <nav class="navbar navbar-expand-lg bg-body-primary pagelayout-1">
+  <nav class="navbar navbar-expand-lg bg-body-secondary pagelayout-1">
     <div class="container-fluid">
 
       <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img src="{% static 'core/img/logo-menu-superior.gif' %}" class="logo-menu-superior" style="height: 40px;;" alt="">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -102,7 +98,7 @@
                   aria-expanded="false" href="{% url 'ingresar' %}">
                 
                 {% if user.is_superuser %}
-                  <span class="text-color fw-bold">
+                  <span class="text-danger fw-bold">
                 {% elif user.is_staff %}
                   <span class="text-success fw-bold">
                 {% else %}
@@ -138,8 +134,8 @@
 
         </ul>
 
-        <a href="{% url 'premio' %}">
-          <img src="{% static 'core/img/oferta.png' %}" style="height: 38px; margin-right: 10px;" alt="">
+        <a href="{% url 'libros' %}">
+          <img src="{% static 'core/img/oferta.png' %}" style="height: 100px; margin-right: 15px;" alt="">
         </a>
 
         <!-- FORMULARIO DE BUSQUEDA -->

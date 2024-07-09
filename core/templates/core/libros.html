@@ -1,4 +1,8 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
 
+{% block content %}
     <div class="container">
         <div class="row">
             <h1>Concursa por un poster de estos actores</h1>
@@ -10,3 +14,8 @@
             </div>
         </div>
     </div>
+{% block script %}
+    <script src="{% static 'core/js/libros.js' %}"></script>
+{% endblock script %}
+
+{% endblock content %}

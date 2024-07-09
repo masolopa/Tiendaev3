@@ -84,10 +84,6 @@ def libros(request):
     # CREAR: renderización de página
     return render(request, 'core/libros.html')
 
-
-def premio(request):
-    return render(request, 'core/premio.html')
-
 @user_passes_test(es_usuario_anonimo, login_url='inicio')
 def ingresar(request):
 

@@ -41,7 +41,7 @@
     <div class="container-fluid">
 
       <a class="navbar-brand" href="{% url 'inicio' %}">
-        <img src="{% static 'core/img/logo-menu-superior.gif' %}" class="logo-menu-superior" style="height: 40px;;" alt="">
+        <img src="{% static 'core/img/logo-menu-superior.gif' %}" class="logo-menu-superior" style="height: 60px;;" alt="">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -126,7 +126,7 @@
           {% if mostrar_carrito %}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'carrito' %}">
-                <img src="{% static 'core/img/carrito.png' %}" width="32px">
+                <img src="{% static 'core/img/carro-vacio.png' %}" width="32px">
                 {{ cantidad_productos }}
               </a>
             </li>

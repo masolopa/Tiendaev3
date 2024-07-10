@@ -136,7 +136,7 @@ def registrarme(request):
         if form_usuario.is_valid() and form_perfil.is_valid():
             usuario = form_usuario.save(commit = False)
             usuario.is_staff = False
-            perfil = form_perfil.save(commit = FALSE)
+            perfil = form_perfil.save(commit = False)
             usuario.save()
             perfil.usuario_id = usuario.id
             perfil.tipo_usuario = 'Cliente'
@@ -155,7 +155,7 @@ def registrarme(request):
     
     if request.method == 'GET':
 
-        form_usuario = RegistroPerfilForm()
+        form_usuario = RegistroUsuarioForm()
         form_perfil = RegistroPerfilForm()
 
         # CREAR: un formulario RegistroUsuarioForm vacío
@@ -217,21 +217,50 @@ def misdatos(request):
 
 @login_required
 def boleta(request, nro_boleta):
-
+    
+    boleta= None
+    detalle_boleta = None
+    if boleta.objects.filter().exists():
+        boleta = boleta.objects.get(nro_boleta=nro_boleta)
+        boleta_es_del_usuario = Boleta.objects.filter(nro_boleta=nro_boleta, cliente=request.user.perfil).exists()
+        if boleta_es_del_usuario or request.user.is_staff:
+            detalle_boleta = DetalleBoleta.objects.filter(boleta=boleta)
+        else:
+            messages.error(request,f'Lo siento la boleta NRO{nro_boleta} no existe en la base de datos.')
     # CREAR: lógica para ver la boleta
     
     # CREAR: variable de contexto para enviar boleta y detalle de la boleta
-    context = { }
+    context = {
+        'boleta': boleta,
+        'detalle_boleta': detalle_boleta,
+     }
 
     return render(request, 'core/boleta.html', context)
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def ventas(request):
     
+    boletas = Boleta.objects.all()
+    historial = []
+    for boleta in boletas:
+        boleta_historial = { 
+            'nro_boleta':boleta.nro_boleta,
+            'nom_cliente': f'{boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}',
+            'fecha_venta':boleta.fecha_venta,
+            'fecha_despacho':boleta.fecha_despacho,
+            'fecha_entrega':boleta.fecha_entrega,
+            'subscrito':'Si' if boleta.cliente.subscrito else 'No',
+            'total_a_pagar': boleta.total_a_pagar,
+            'estado':boleta.estado,
+        }
+        historial.append(boleta_historial)
+    
     # CREAR: lógica para ver las ventas
 
     # CREAR: variable de contexto para enviar historial de ventas
-    context = { }
+    context = {
+        'historial':historial,
+     }
 
     return render(request, 'core/ventas.html', context)
 
@@ -239,17 +268,36 @@ def ventas(request):
 def productos(request, accion, id):
     
     if request.method == 'POST':
+        if accion == 'crear':
+            form = ProductoForm(request.POST, request.FILES)
+        elif accion == 'actualizar':
+            form= ProductoForm(request.POST, request.FILES, instance=Producto.objects.get(id=id))
+            
+    if form.is_valid():
+        Producto= form.save()
+        ProductoForm(instance=Producto)
+        messages.success(request,f'El producto"{str(Producto)}"se logro {accion} correctamente.')
+        return redirect(productos,'actualizar', Producto.id)
+    else:
+        show_form_errors(request,[form])
         
-        # CREAR: lógica para crear y actualizar un producto
-        pass
-
-    if request.method == 'GET':
-
-        # CREAR: lógica para preparar la página para la acción de: crear, actualizar y eliminar un producto
-        pass
+        if request.method == 'GET':
+            if accion == 'crear':
+                form = ProductoForm() 
+        elif accion =='actualizar':
+            form = ProductoForm(instance=Producto.objects.get(id=id))
+        elif accion == 'eliminar':
+            eliminado, mensaje= eliminar_registro(Producto, id)
+            messages.success(request,mensaje)
+    if eliminado:
+        return redirect(productos, 'crear', '0')
+    form = ProductoForm(instance=Producto.objects.get(id=id))
 
     # CREAR: variable de contexto para enviar el formulario y todos los productos
-    context = { }
+    context = { 
+        'form':form,
+        'productos':Producto.objetc.all()
+    }
 
     return render(request, 'core/productos.html', context)
 

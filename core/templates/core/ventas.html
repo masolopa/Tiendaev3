@@ -3,46 +3,37 @@
 {% load custom_filters %}
 
 {% block content %}
-    
+    <h1>Historial de Ventas</h1>
     <table id="tabla-principal" class="table table-hover">
-        <div class="container my-5">         
-             <thead>
-         
-              <tr>
-         
-               <th scope="col">{{boleta.nro_boleta}}</th>
-         
-               <th scope="col">{{boleta.fecha_venta|formatear_fecha}}</th>
-         
-               <th scope="col">{{boleta.nom_cliente}}</th>
-         
-               <th scope="col">{{boleta.subscrito}}</th>
-         
-               <th scope="col">{{boleta.total_a_pagar|formatear_dinero}}</th>
-         
-               <th scope="col">{{boleta.fecha_despacho|formatear_fecha}}</th>
-         
-               <th scope="col">{{boleta.fecha_entrega|formatear_fecha}}</th>
-         
-               <th scope="col">{{boleta.estado}}</th>
-         
-              </tr>
-         
-             </thead>
-         
-         
-         
-    </table>
-         
-         
+        <thead>
+            <tr>
+                <th> Nro boleta </th>
+                <th> Cliente </th>
+                <th> Venta </th>
+                <th> Despacho </th>
+                <th> Entrega </th>
+                <th> Subscrito </th>
+                <th> Monto total </th>
+                <th> Estado actual </th>
+                <th> Detalle </th>
+                <th> Cambiar estado </th>
+            </tr>
+        </thead> 
         <tbody>
-            {% for boleta in historial %}
+            {% for boleta in historial %}|
                 {% if boleta.estado == 'Anulado' %}
                     <tr class="letra-boleta-anulada"> 
                 {% else %}
                     <tr>
                 {% endif %}
-
+                    <td>{{boleta.nro_boleta}} </td>
+                    <td>{{boleta.nom_cliente}} </td>
+                    <td>{{boleta.fecha_venta|formatear_fecha}} </td>
+                    <td>{{boleta.fecha_despacho|formatear_fecha}} </td>
+                    <td>{{boleta.fecha_entrega|formatear_fecha}} </td>
+                    <td>{{boleta.subscrito}} </td>
+                    <td>{{boleta.total_a_pagar|formatear_dinero}} </td>
+                    <td>{{boleta.estado}} </td>
                     <td>
                         <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
                     </td>
@@ -60,5 +51,7 @@
             {% endfor %}
         </tbody>       
     </table>
-
+{% block script %}
+    <script src="{% static 'core/js/ventas.js' %}"></script>
+{% endblock script %}
 {% endblock content %}

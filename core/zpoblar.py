@@ -179,10 +179,10 @@ def poblar_bd(test_user_email=''):
         imagen='perfiles/rdowneyjr.jpg')
     
     categorias_data = [
-        { 'id': 1, 'nombre': 'Acción'},
-        { 'id': 2, 'nombre': 'Aventura'},
-        { 'id': 3, 'nombre': 'Estrategia'},
-        { 'id': 4, 'nombre': 'RPG'},
+        { 'id': 1, 'nombre': 'Bottom'},
+        { 'id': 2, 'nombre': 'Top'},
+        { 'id': 3, 'nombre': 'Accesorios'},
+        { 'id': 4, 'nombre': 'Calzado'},
     ]
 
     print('Crear categorías')
@@ -213,7 +213,7 @@ def poblar_bd(test_user_email=''):
             'imagen': 'productos/000002.jpg'
         },
         {
-            'id': 3,
+            'id': 1,
             'categoria': Categoria.objects.get(id=1),
             'nombre': 'Baggy jeans',
             'descripcion': 'Call of Duty: Modern Warfare II es la secuela de Modern Warfare (2019) y la decimonovena entrega de la serie Call of Duty. La campaña de Modern Warfare II sigue a la Fuerza Operativa 141 mientras persiguen a un terrorista iraní llamado Hassan Zyani, quien adquirió un misil balístico estadounidense.',
@@ -223,7 +223,7 @@ def poblar_bd(test_user_email=''):
             'imagen': 'productos/000003.jpg'
         },
         {
-            'id': 4,
+            'id': 2,
             'categoria': Categoria.objects.get(id=2),
             'nombre': 'Camisa',
             'descripcion': 'Nuestra camisa es una pieza esencial en cualquier guardarropa. Confeccionada con materiales de alta calidad, ofrece un ajuste cómodo y un estilo versátil. Perfecta para combinar con cualquier atuendo, desde formal hasta casual. ¡Añade elegancia y frescura a tu día a día!',

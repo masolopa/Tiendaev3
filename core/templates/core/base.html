@@ -23,18 +23,6 @@
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/utilities/font-size/font-size.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/utilities/padding/padding.css">
 
-
-
-    <!-- BLOQUE DE ESTILOS CSS PERSONALIZADOS PARA CADA PAGINA -->
-    {% block stylesheet %}
-      
-    {% endblock stylesheet %}
-
-    <!-- BLOQUE DE JAVASCRIPT EN HEAD, PERSONALIZADOS PARA CADA PAGINA -->
-    {% block script-head %}
-      
-    {% endblock script-head %}
-
 </head>
 <body>
 
@@ -55,15 +43,15 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+          
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}"> Inicio </a>
           </li>
-
+          
           {% if not user.is_authenticated %}
-            <li class="nav-item">
+          <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'registrarme' %}"> Registrarme </a>
-            </li>
+          </li>
           {% endif %}
 
           <li class="nav-item">
@@ -134,7 +122,6 @@
               </a>
             </li>
           {% endif %}
-
         </ul>
 
         <a href="{% url 'libros' %}">
@@ -152,7 +139,6 @@
           
           <button class="btn btn-outline-secondary fw-bold" style="border-color:rgb(201, 42, 103)" type="submit">¡Vamos! </button>
         </form>
-
       </div>
     </div>
   </nav>
@@ -174,7 +160,7 @@
       <div class="row gy-5 gy-md-0 align-items-md-center">
         <div class="col-xs-12 col-md-7 order-1 order-md-0">
           <div class="copyright text-center text-md-start">
-             Classy Domain
+             Classy Domain.
           </div>
           <div class="credits text-secondary text-center text-md-start mt-2 fs-8">
             Built by <a href="https://bootstrapbrain.com/" class="link-secondary text-decoration-none">BootstrapBrain</a> with <span class="text-primary">&#9829;</span>

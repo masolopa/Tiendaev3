@@ -8,110 +8,40 @@
 
     {% csrf_token %}
 
-
-    <form id="form-producto" name="form-producto" class="row g-3" novalidate>
-
       <div class="col-md-6">
+        
+        {{form.categoria|as_bootstrap_field}}
+        {{form.nombre|as_bootstrap_field}}
+        {{form.descripcion|as_bootstrap_field}}
 
-        <div class="mb-3">
+      </div>
 
-          <label for="idProducto" class="form-label">ID de Producto</label>
-
-          <input type="number" class="form-control form-control-sm" id="idProducto" name="idProducto">
-
-        </div>
-
-        <div class="mb-3">
-
-          <label for="categoria" class="form-label">Categoría</label>
-
-          <select id="categoria" name="categoria" class="form-select" aria-label="Selecciona la categoría">
-
-            <option selected value="" >Selecciona la categoría</option>
-
-            <option value="1">Top</option>
-
-            <option value="2">Bottom</option>
-
-            <option value="3">Calzado</option>
-
-          </select>
-
-        </div>
-
-        <div class="mb-3">
-
-          <label for="nombre" class="form-label">Nombre</label>
-
-          <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombreHelp">
-
-          <div id="nombreHelp" class="form-text"></div>
-
-        </div>
-
-        <div class="mb-3">
-
-          <label for="precio" class="form-label">Precio</label>
-
-          <input type="number" class="form-control" id="precio" name="precio" aria-describedby="precioHelp">
-
-        </div>
-
-        <div class="mb-3">
-
-          <label for="descuentoSub" class="form-label">Descuento Subscriptor</label>
-
-          <input type="number" class="form-control" id="descuentoSub" name="descuentoSub" aria-describedby="descuentohelp">
-
-          <div id="descuentoHelp" class="form-text"></div>
-
-        </div>
-
-        <div class="mb-3">
-
-         <label for="descuento" class="form-label">Descuento Oferta</label>
-
-         <input type="number" class="form-control" id="descuento" name="descuento" aria-describedby="descuentohelp">
-
-         <div id="descuentoHelp" class="form-text"></div>
-
-        </div>
-
-        <div class="mb-3">
-
-         <label for="descripcion" class="form-label">Descripción del producto</label>
-
-         <textarea
-
-          required placeholder class="form-control"
-
-          rows="3"id="descripcion"Name="descripcion"aria-describedby="descripcionHelp"
-
-         ></textarea>
-
-         <div id="direccionHelp" class="form-text">
-
-         </div>
-
-        </div>
+      <div class="mb-3">
+        {{form.precio|as_bootstrap_field}}
+        {{form.descuento_subscriptor|as_bootstrap_field}}
+        {{form.descuento_oferta|as_bootstrap_field}}
+      </div>
 
   
 
-      </div>
 
-      <!-- Botones -->
 
-      <div class="col-12">
+   <!-- AREA DE BOTONES -->
+   <div class="mt-2 mb-3 text-center">
 
-        <button type="submit" id="btnGuardar" class="btn btn-primary">Nuevo</button>
+    <input class="btn btn-primary" type="submit" value="Guardar">
 
-        <button class="btn btn-success">Agregar</button>
+    <a class="btn btn-primary" href="{% url 'productos' 'crear' '0' %}"> Nuevo </a>
 
-        <button type="reset" id="btnLimpiar" class="btn btn-secondary">Eliminar</button>
+    <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap (VER COMENTARIO "BOTON IMAGEN" en script.js) -->
+  <button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>  
 
-      </div>
+    {% if form.instance.id %}
+      <a class="btn btn-primary"  href="{% url 'productos' 'eliminar' form.instance.id %}"> Eliminar </a>
+    {% endif %}
 
-      <p id="mensajeError"></p>
+  </div>
+
 
     </form>
 
@@ -127,17 +57,17 @@
 
         <th>ID</th>
 
-        <th>{{form.categoria|as_bootstrap_field}}</th>
+        <th>Categoría</th>
 
-        <th>{{form.nombre|as_bootstrap_field}}</th>
+        <th>Nombre</th>
 
-        <th>{{form.descripcion|as_bootstrap_field}}</th>
+        <th>Descripción</th>
 
-        <th>{{form.precio|as_bootstrap_field}}</th>
+        <th>Precio</th>
 
-        <th>{{form.descuento_subscriptor|as_bootstrap_field}}</th>
+        <th>% Subscriptor</th>
 
-        <th>{{form.descuento_oferta|as_bootstrap_field}}</th>
+        <th>% Oferta</th>
 
       </tr>
 
@@ -145,113 +75,32 @@
 
     <tbody>
 
-      <tr>
+      {% for producto in productos %}
 
-        <td>1</td>
+    <tr>
 
-        <td>Top</td>
+      producto.id
+      producto.categoria
+      producto.nombre
+      producto.descripcion
+      producto.precio|formatear_dinero
+      producto.descuento_subscriptor|formatear_porcentaje
+      producto.descuento_oferta|formatear_porcentaje
+      <td>{{producto.categoria|as_bootstrap_field}}</td>
 
-        <td>Camisa</td>
+      <td>{{producto.nombre|as_bootstrap_field}}</td>
+  
+      <td>{{producto.descripcion|as_bootstrap_field}}</td>
+  
+      <td>{{producto.precio|as_bootstrap_field}}</td>
+  
+      <td>{{producto.descuento_subscriptor|as_bootstrap_field}}</td>
+  
+      <td>{{producto.descuento_oferta|as_bootstrap_field}}</td>
+    </tr>
 
-        <td>Camisa Rosada</td>
+      {% endfor %}
 
-        <td>$ 10.000</td>
-
-        <td>15%</td>
-
-        <td>0%</td>
-
-      </tr>
-
-      <tr>
-
-        <td>2</td>
-
-        <td>Top</td>
-
-        <td>Chaleco</td>
-
-        <td>Chaleco Rojo</td>
-
-        <td>$ 10.000</td>
-
-        <td>15%</td>
-
-        <td>10%</td>
-
-      </tr>
-
-      <tr>
-
-        <td>3</td>
-
-        <td>Accesorios</td>
-
-        <td>Zapatos</td>
-
-        <td>Zapatos Gucci</td>
-
-        <td>$ 15.000</td>
-
-        <td>15%</td>
-
-        <td>20%</td>
-
-      </tr>
-
-      <tr>
-
-        <td>4</td>
-
-        <td>Accesorios</td>
-
-        <td>Gafas</td>
-
-        <td>Gafas de sol</td>
-
-        <td>$ 5.000</td>
-
-        <td>15%</td>
-
-        <td>5%</td>
-
-      </tr>
-
-      <tr>
-
-        <td>5</td>
-
-        <td>Bottom</td>
-
-        <td>Falda</td>
-
-        <td>Falda Negra</td>
-
-        <td>$ 9.000</td>
-
-        <td>15%</td>
-
-        <td>35%</td>
-
-      </tr>
-
-      <tr>
-
-        <td>6</td>
-
-        <td>Bottom</td>
-
-        <td>Pantalón</td>
-
-        <td>Pantalón cargo</td>
-
-        <td>$ 16.000</td>
-
-        <td>15%</td>
-
-        <td>10%</td>
-
-      </tr>
 
     </tbody>
 

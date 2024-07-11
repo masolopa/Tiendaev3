@@ -4,165 +4,28 @@
 
 {% block content %}
 
-
-
-
   <form id="form" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
+    
+    <div class="row">
 
-  <h1>Registro</h1>
-  <div class="row">
       <!-- AREA DE DATOS BASICOS: username, nombre, apellidos, correo y contraseñas -->
-    <div class="col-sm-12 col-md-12">
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-          <!-- Campos del formulario -->
-          <div class="col-sm-12 col-md-4">
-            <!-- Campo RUT -->
-            <div class="mb-3">
-              <label for="rut" class="form-label">RUT</label>
-              <input
-                required
-                placeholder="Ej: 11123123-K"
-                type="text"
-                class="form-control"
-                id="id_rut"
-                name="rut"
-                aria-describedby="rutHelp"/>
-              <div id="rutHelp" class="form-text">
-                Escribe el RUT sin puntos y con guión.
-              </div>
-            </div>
+      <div class="col-sm-12 col-md-4">
 
-            <!-- Campo Nombre -->
-            <div class="mb-3">
-              <label for="fisrt_name" class="form-label">Nombre</label>
-              <input
-                required
-                placeholder="Ej: Mario"
-                type="text"
-                class="form-control"
-                id="id_first_name"
-                name="first_name"
-                aria-describedby="nombreHelp"/>
-              <div id="nombreHelp" class="form-text">Escribe tu nombre.</div>
-            </div>
+        {{form_usuario|as_bootstrap_form:'help_text_visible=False'}}
 
-            <!-- Campo Apellido -->
-            <div class="mb-3">
-              <label for="last_name" class="form-label">Apellido</label>
-              <input
-                required
-                placeholder="Ej: Lobos Molina"
-                type="text"
-                class="form-control"
-                id="id_last_name"
-                name="last_name"
-                aria-describedby="apellidoHelp"
-              />
-              <div id="apellidoHelp" class="form-text">
-                Escribe tu apellido.
-              </div>
-            </div>
+      </div>
 
-                        <!-- Username-->
-            <div class="mb-3">
-              <label for="" class="form-label"> Nombre de usuario </label>
-              <input
-                required
-                type="username"
-                class="form-control"
-                id="id_username"
-                name="username"
-                placeholder="Ej: Cmolina, Lparra"
-                aria-describedby="usernameHelp"
-              />
-              <div id="usernameHelp" class="form-text">Escriba su nombre de usuario.</div>
-            </div>
+      <!-- AREA DE DATOS DE PERFIL: rut, dirección y subscrito (VER COMENTARIO "CHECKBOX SUBSCRITO" en script.js)  -->
+      <div class="col-sm-12 col-md-4">
 
-            <!-- Correo -->
-            <div class="mb-3">
-              <label for="email" class="form-label"> E-mail </label>
-              <input
-                required
-                type="email"
-                class="form-control"
-                id="id_email"
-                name="email"
-                placeholder="Ej: Cmolina@gmail.com"
-                aria-describedby="emailHelp"
-              />
-              <div id="emailHelp" class="form-text">Escriba su E-mail.</div>
-            </div>
-
-            <!-- Campo direccion -->
-            <div class="mb-3">
-              <label for="direccion" class="form-label">Dirección</label>
-              <textarea
-                required
-                placeholder="Ej: Las carancas 425, Estación central"
-                class="form-control"
-                rows="3"
-                id="id_direccion"
-                name="direccion"
-                aria-describedby="direccionHelp"
-              ></textarea>
-              <div id="direccionHelp" class="form-text">
-                Escribe tu dirección.
-              </div>
-            </div>
-
-            <!-- Campo Subscrito -->
-            <div class="mb-3">
-              <label for="subscrito" class="form-label">Suscribirse</label>
-              <input type="checkbox" id="id_subscrito" name="subscrito" />
-              <div id="susscritoHelp" class="form-text">
-                Suscribete y obtén un 30% de descuento en tu primera compra
-              </div>
-            </div>
-
-            <!-- Campo Contraseña -->
-            <div class="mb-3">
-              <label for="password1" class="form-label">Contraseña</label>
-              <input
-                type="password"
-                required
-                placeholder="Escribe aquí tu contraseña"
-                class="form-control"
-                id="id_password1"
-                name="password1"
-                aria-describedby="passwordHelp"
-              />
-              <div id="passwordHelp" class="form-text">
-                La contraseña debe tener un número, un símbolo, letras
-                mayúsculas y minúsculas, y además debe tener al menos 8
-                caracteres.
-              </div>
-            </div>
-
-            <!-- Campo Repetir Contraseña -->
-            <div class="mb-3">
-              <label for="password2" class="form-label">Repetir contraseña</label>
-              <input
-                type="password"
-                required
-                placeholder="Repite aquí tu contraseña"
-                class="form-control"
-                id="id_password2"
-                name="password2"
-                aria-describedby="password2Help"
-              />
-              <div id="password2Help" class="form-text">
-                La contraseña debe ser igual a la de arriba.
-              </div>
-            </div>
-          </div>
+        {{form_perfil|as_bootstrap_form}}
 
       </div>
 
       <!-- AREA DE IMAGEN DE PERFIL -->
-      <div class="col-sm-12 col-md-4 boton">
+      <div class="col-sm-12 col-md-4">
         <img
           height="200px"
           width="250px"

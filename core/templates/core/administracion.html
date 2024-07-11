@@ -1,23 +1,24 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block content %}
     <nav>
       <ul>
         <li>
-          <a href="{% url 'usuarios'%}"
+          <a href="{% url 'usuarios' 'crear' '0' %}"
             >Mantenedor de Usuarios</a
           >
         </li>
         <li>
-          <a href="{% url 'productos'%}"
+          <a href="{% url 'productos' 'crear' '0' %}"
             >Mantenedor de Productos</a
           >
         </li>
         <li>
-          <a href="{% url 'ventas'%}">Historial de Ventas</a>
+          <a href="{% url 'ventas' %}">Historial de Ventas</a>
         </li>
         <li>
           <a href="{% url 'bodega'%}">Mantenedor de Bodega</a>
         </li>
       </ul>
     </nav>
-
+{% endblock %}

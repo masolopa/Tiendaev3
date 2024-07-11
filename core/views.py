@@ -174,12 +174,12 @@ def misdatos(request):
 
     if request.method == 'POST':
 
-        form_usuario = UsuarioForm(request.POST, instancee = request.user)
-        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=request.user)
+        form_usuario = UsuarioForm(request.POST, instance=request.user)
+        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=request.user.perfil)
 
         if form_usuario.is_valid() and form_perfil.is_valid():
             usuario = form_usuario.save(commit = False)
-            perfil = form_usuario.save(commit = False)
+            perfil = form_perfil.save(commit = False)
             usuario.save()
             perfil.usuario_id = usuario.id
             perfil.save()
@@ -268,63 +268,88 @@ def ventas(request):
 def productos(request, accion, id):
     
     if request.method == 'POST':
+
         if accion == 'crear':
             form = ProductoForm(request.POST, request.FILES)
         elif accion == 'actualizar':
             form= ProductoForm(request.POST, request.FILES, instance=Producto.objects.get(id=id))
-            
-    if form.is_valid():
-        Producto= form.save()
-        ProductoForm(instance=Producto)
-        messages.success(request,f'El producto"{str(Producto)}"se logro {accion} correctamente.')
-        return redirect(productos,'actualizar', Producto.id)
-    else:
-        show_form_errors(request,[form])
         
-        if request.method == 'GET':
-            if accion == 'crear':
+        if form.is_valid():
+            producto= form.save()
+            ProductoForm(instance=producto)
+            messages.success(request,f'El producto"{str(Producto)}"se logro {accion} correctamente.')
+            return redirect(productos,'actualizar', Producto.id)
+        else:
+            show_form_errors(request,[form])
+        
+
+    if request.method == 'GET':
+        if accion == 'crear':
                 form = ProductoForm() 
         elif accion =='actualizar':
             form = ProductoForm(instance=Producto.objects.get(id=id))
         elif accion == 'eliminar':
             eliminado, mensaje= eliminar_registro(Producto, id)
             messages.success(request,mensaje)
-    if eliminado:
-        return redirect(productos, 'crear', '0')
-    form = ProductoForm(instance=Producto.objects.get(id=id))
+            if eliminado:
+                return redirect(productos, 'crear', '0')
+            form = ProductoForm(instance=Producto.objects.get(id=id))
 
     # CREAR: variable de contexto para enviar el formulario y todos los productos
     context = { 
         'form':form,
-        'productos':Producto.objetc.all()
+        'productos':Producto.objects.all()
     }
 
     return render(request, 'core/productos.html', context)
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def usuarios(request, accion, id):
+
+    usuario = User.objects.get(id=id) if int(id)> 0 else None
+    perfil = usuario.perfil if usuario else None
     
     # CREAR: variables de usuario y perfil
 
     if request.method == 'POST':
 
-        # CREAR: un formulario UsuarioForm para recuperar datos del formulario asociados al usuario
-        # CREAR: un formulario PerfilForm para recuperar datos del formulario asociados al perfil del usuario
-        # CREAR: lógica para actualizar los datos del usuario
-        pass
-    
+        form_usuario = UsuarioForm (request.POST, instance=usuario)
+
+        form_perfil = PerfilForm (request.POST, request.FILES, instance=perfil)
+
+        if form_usuario.is_valid() and form_perfil.is_valid():
+            usuario = form_usuario.save(commit=False)
+            tipo_usuario = form_perfil.cleaned_data['tipo_usuario']
+            usuario.is_staff = tipo_usuario in ['Administrador','Superusuario']
+            pefirl= form_perfil.save(commit= False)
+            usuario.save()
+            messages.success(request, f'El usuario {usuario.first_name} {usuario.last_name} se guardo correctamente')
+            return redirect(usuarios, 'actualizar', usuario.id)
+        else:
+            messages.error(request, f'No fue posible guardar el nuevo usuario')
+            show_form_errors(request,[form_usuario, form_perfil])
+
+
     if request.method == 'GET':
 
         if accion == 'eliminar':
-            # CREAR: acción de eliminar un usuario
-            pass
+            eliminado, mensaje = eliminar_registro(User, id)
+            messages.success(request, mensaje)
+            return redirect(usuarios, 'crear', '0')
+
         else:
+            form_usuario = UsuarioForm(instance=usuario)
+            form_perfil = PerfilForm(instance=perfil)
             # CREAR: un formulario UsuarioForm asociado al usuario
             # CREAR: un formulario PerfilForm asociado al perfil del usuario
             pass
 
     # CREAR: variable de contexto para enviar el formulario de usuario, formulario de perfil y todos los usuarios
-    context = { }
+    context = { 
+        'form_usuario':form_usuario,
+        'form_perfil':form_perfil,
+        'usuarios':User.objects.all(),
+    }
 
     return render(request, 'core/usuarios.html', context)
 

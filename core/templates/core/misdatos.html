@@ -36,8 +36,10 @@
           alt=""
         />
         <br /><br />
-              <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap (VER COMENTARIO "BOTON IMAGEN" en script.js) -->
-      <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>     
+        
+      <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap (VER COMENTARIO "BOTON IMAGEN" en script.js) -->
+      <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();" class="btn btn-primary boton"> Seleccionar imagen </button>  
+
         <!--<input type="file" class="btn btn-light" />-->
       </div>
       </div>
@@ -48,7 +50,7 @@
     <!-- AREA DE BOTONES -->
     <div class="mt-2 mb-3 text-center">
       
-      <button class="boton" type="submit"> Registrarme </button>
+      <button class="boton" type="submit"> Guardar </button>
       
       <!-- Boton para "Limpiar formulario" (VER COMENTARIO "BOTON LIMPIAR FORMULARIO" en script.js) -->
       <button class="boton" class="boton" type="reset" id="limpiar_formulario"> Limpiar </button>

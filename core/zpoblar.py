@@ -181,8 +181,8 @@ def poblar_bd(test_user_email=''):
     categorias_data = [
         { 'id': 1, 'nombre': 'Bottom'},
         { 'id': 2, 'nombre': 'Top'},
-        { 'id': 3, 'nombre': 'Accesorios'},
-        { 'id': 4, 'nombre': 'Calzado'},
+        { 'id': 3, 'nombre': 'Overall y conjuntos'},
+        { 'id': 4, 'nombre': 'Accesorios y calzado'},
     ]
 
     print('Crear categorías')
@@ -191,7 +191,7 @@ def poblar_bd(test_user_email=''):
     print('Categorías creadas correctamente')
 
     productos_data = [
-        # Categoría "Acción" (8 juegos)
+
         {
             'id': 1,
             'categoria': Categoria.objects.get(id=1),
@@ -204,26 +204,26 @@ def poblar_bd(test_user_email=''):
         },
         {
             'id': 2,
-            'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Chaleco de punto',
-            'descripcion': 'Este chaleco de punto es la capa perfecta para añadir calidez y estilo a tu atuendo. Suave y cómodo, ideal para cualquier temporada. Versátil y elegante, complementa tanto looks formales como casuales. ¡Incorpora esta pieza esencial a tu colección!',
-            'precio': 9990,
+            'categoria': Categoria.objects.get(id=3),
+            'nombre': 'Overall a cuadros',
+            'descripcion': 'Este overall a cuadros rojo y blanco combina estilo y comodidad. Con un diseño llamativo y fresco, es perfecto para un look casual y divertido. Versátil y cómodo, ideal para cualquier ocasión. ¡Añade un toque de originalidad a tu guardarropa!',
+            'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
             'imagen': 'productos/000002.jpg'
         },
         {
-            'id': 1,
+            'id': 3,
             'categoria': Categoria.objects.get(id=1),
             'nombre': 'Baggy jeans',
-            'descripcion': 'Call of Duty: Modern Warfare II es la secuela de Modern Warfare (2019) y la decimonovena entrega de la serie Call of Duty. La campaña de Modern Warfare II sigue a la Fuerza Operativa 141 mientras persiguen a un terrorista iraní llamado Hassan Zyani, quien adquirió un misil balístico estadounidense.',
+            'descripcion': 'Estos baggy jeans combinan estilo y comodidad a la perfección. Con un corte amplio y relajado, son ideales para un look casual y moderno. Versátiles y fáciles de combinar, se convertirán en tu prenda favorita para cualquier ocasión. ¡Atrévete a lucir con actitud!',
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
             'imagen': 'productos/000003.jpg'
         },
         {
-            'id': 2,
+            'id': 4,
             'categoria': Categoria.objects.get(id=2),
             'nombre': 'Camisa',
             'descripcion': 'Nuestra camisa es una pieza esencial en cualquier guardarropa. Confeccionada con materiales de alta calidad, ofrece un ajuste cómodo y un estilo versátil. Perfecta para combinar con cualquier atuendo, desde formal hasta casual. ¡Añade elegancia y frescura a tu día a día!',
@@ -235,49 +235,49 @@ def poblar_bd(test_user_email=''):
         {
             'id': 5,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Doom Eternal',
-            'descripcion': 'Doom Eternal es un shooter en primera persona desarrollado por id Software y publicado por Bethesda Softworks. El juego continúa la historia de Doom (2016), y sigue al Doom Slayer en su lucha contra las fuerzas del infierno que han invadido la Tierra.',
-            'precio': 19990,
+            'nombre': 'Falda',
+            'descripcion': 'Esta falda larga negra es un clásico atemporal. Con su elegante caída y diseño versátil, es perfecta para cualquier ocasión, desde eventos formales hasta salidas casuales. Comodidad y estilo se unen en esta prenda imprescindible. ¡Luce sofisticad@ y chic con cada paso!',
+            'precio': 9990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 20,
             'imagen': 'productos/000005.jpg'
         },
         {
             'id': 6,
-            'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Elden Ring',
-            'descripcion': 'Elden Ring es un juego de rol de acción desarrollado por FromSoftware y publicado por Bandai Namco Entertainment. El juego se desarrolla en un mundo abierto llamado las Tierras Intermedias, donde los jugadores controlan a un personaje conocido como el Sinluz, que debe viajar por el mundo para restaurar el Elden Ring, un poderoso artefacto que ha sido destruido.',
-            'precio': 59990,
+            'categoria': Categoria.objects.get(id=2),
+            'nombre': 'Chaqueta',
+            'descripcion': 'Nuestra chaqueta de cuero sintético aporta un toque rebelde y moderno a cualquier atuendo. Con un diseño elegante y resistente, es perfecta para cualquier temporada. Ideal para un look urbano y sofisticado. ¡Hazla tu prenda de referencia y destaca con estilo!',
+            'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
             'imagen': 'productos/000006.jpg'
         },
         {
             'id': 7,
-            'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Horizon Forbidden West',
-            'descripcion': 'Horizon Forbidden West es la secuela de Horizon Zero Dawn. El juego sigue a Aloy, una joven cazadora en un mundo postapocalíptico gobernado por máquinas. En Forbidden West, Aloy debe viajar a una nueva y peligrosa frontera para investigar una misteriosa plaga que está matando la vida vegetal y animal.',
-            'precio': 69990,
+            'categoria': Categoria.objects.get(id=3),
+            'nombre': 'Vestido',
+            'descripcion': 'Este vestido holgado es la definición de comodidad y estilo. Con su corte amplio y fluido, es perfecto para cualquier ocasión, desde días relajados hasta salidas especiales. Fresco, versátil y elegante, es una pieza esencial en tu guardarropa. ¡Siéntete libre y fabulos@ en cada momento!',
+            'precio': 9990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
             'imagen': 'productos/000007.jpg'
         },
         {
             'id': 8,
-            'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Spider-Man: Miles Morales',
-            'descripcion': 'Spider-Man: Miles Morales es un juego de acción y aventura desarrollado por Insomniac Games y publicado por Sony Interactive Entertainment. El juego sigue a Miles Morales, un adolescente que adquiere poderes similares a los de Spider-Man después de ser mordido por una araña genéticamente modificada.',
-            'precio': 49990,
+            'categoria': Categoria.objects.get(id=2),
+            'nombre': 'Camiseta estampada',
+            'descripcion': 'Nuestra camiseta estampada añade un toque de personalidad a tu look diario. Confeccionada con materiales suaves y transpirables, ofrece comodidad y estilo. Perfecta para combinar con jeans o faldas, es una prenda versátil que destaca en cualquier ocasión. ¡Expresa tu estilo único con esta camiseta!',
+            'precio': 7990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
             'imagen': 'productos/000008.jpg'
         },
-        # Categoría "Aventura" (4 juegos)
+
         {
             'id': 9,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'The Legend of Zelda: Breath of the Wild',
-            'descripcion': 'The Legend of Zelda: Breath of the Wild es un videojuego de acción-aventura desarrollado y publicado por Nintendo para las consolas Nintendo Switch y Wii U. El juego es la decimonovena entrega de la serie The Legend of Zelda y fue lanzado mundialmente en marzo de 2017. Breath of the Wild es un juego de mundo abierto que permite a los jugadores explorar libremente el reino de Hyrule.',
+            'nombre': 'Vestón',
+            'descripcion': 'Nuestro vestón aporta un toque de sofisticación y elegancia a tu atuendo. Con un diseño clásico y un ajuste impecable, es perfecto para ocasiones formales y eventos especiales. Confeccionado con materiales de alta calidad, ofrece comodidad y estilo duradero. ¡Destaca con confianza en cualquier ocasión!',
             'precio': 59990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
@@ -286,8 +286,8 @@ def poblar_bd(test_user_email=''):
         {
             'id': 10,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Uncharted 4: A Thief\'s End',
-            'descripcion': 'Uncharted 4: A Thief\'s End es un videojuego de acción-aventura desarrollado por Naughty Dog y publicado por Sony Computer Entertainment para PlayStation 4. El juego fue lanzado en mayo de 2016 y es la cuarta entrega principal de la serie Uncharted. La historia sigue a Nathan Drake, un cazador de tesoros retirado que se ve obligado a volver a su antigua vida cuando su hermano Sam reaparece.',
+            'nombre': 'Chaleco de punto',
+            'descripcion': 'Este chaleco de punto es la capa perfecta para añadir calidez y estilo a tu atuendo. Suave y cómodo, ideal para cualquier temporada. Versátil y elegante, complementa tanto looks formales como casuales. ¡Incorpora esta pieza esencial a tu colección!',
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 20,
@@ -295,10 +295,10 @@ def poblar_bd(test_user_email=''):
         },
         {
             'id': 11,
-            'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Assassin\'s Creed Valhalla',
-            'descripcion': 'Assassin\'s Creed Valhalla es un videojuego de acción-aventura desarrollado por Ubisoft Montreal y publicado por Ubisoft. Es la duodécima entrega principal de la serie Assassin\'s Creed y la sucesora de Assassin\'s Creed Odyssey de 2018. El juego se lanzó en noviembre de 2020 para Microsoft Windows, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S y Stadia.',
-            'precio': 59990,
+            'categoria': Categoria.objects.get(id=1),
+            'nombre': 'Pantalones',
+            'descripcion': 'Nuestros pantalones cargo combinan funcionalidad y estilo. Con múltiples bolsillos y un diseño resistente, son perfectos para un look casual y práctico. Versátiles y cómodos, ideales para cualquier aventura. ¡Añade un toque utilitario a tu guardarropa!',
+            'precio': 18990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
             'imagen': 'productos/000011.jpg'
@@ -306,19 +306,18 @@ def poblar_bd(test_user_email=''):
         {
             'id': 12,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Star Wars Jedi: Fallen Order',
-            'descripcion': 'Star Wars Jedi: Fallen Order es una emocionante aventura de acción en tercera persona ambientada en el universo de Star Wars. Ponte en la piel de Cal Kestis, un padawan que sobrevivió a la Orden 66 y debe completar su entrenamiento, desarrollar nuevas y poderosas habilidades con la Fuerza y dominar el arte del sable láser mientras te mantienes un paso por delante del Imperio y sus mortíferos Inquisidores.',
-            'precio': 39990,
+            'nombre': 'Vest',
+            'descripcion': 'Este vest es la prenda ideal para añadir un toque de elegancia a cualquier atuendo. Con un diseño clásico y versátil, es perfecto para ocasiones formales y casuales. Confeccionado con materiales de alta calidad, ofrece comodidad y estilo en cada uso. ¡Incorpora esta pieza esencial a tu guardarropa!',
+            'precio': 12990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
             'imagen': 'productos/000012.jpg'
         },
-        # Categoría "Estrategia" (4 juegos)
         {
             'id': 13,
-            'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Civilization VI',
-            'descripcion': 'Civilization VI es un juego de estrategia por turnos en el que los jugadores intentan construir un imperio que resista el paso del tiempo. Explora un nuevo mundo, investiga tecnologías, conquista a tus enemigos y enfréntate a los líderes más famosos de la historia mientras intentas construir la civilización más grande jamás conocida.',
+            'categoria': Categoria.objects.get(id=4),
+            'nombre': 'Cartera',
+            'descripcion': 'Nuestra cartera es el accesorio perfecto para complementar tu estilo. Con un diseño elegante y espacioso, ofrece funcionalidad y sofisticación. Ideal para llevar tus esenciales diarios con comodidad y clase. ¡Añádelo a tu colección y luce impecable en cualquier ocasión!',
             'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 5,
@@ -326,9 +325,9 @@ def poblar_bd(test_user_email=''):
         },
         {
             'id': 14,
-            'categoria': Categoria.objects.get(id=3),
-            'nombre': 'XCOM 2',
-            'descripcion': 'XCOM 2 es la secuela del galardonado juego de estrategia XCOM: Enemy Unknown. La Tierra ha cambiado y ahora está bajo control alienígena. Como líder de XCOM, una organización militar secreta, debes reconstruir la base de operaciones, reclutar nuevos soldados y liderar la resistencia para liberar a la humanidad del yugo alienígena.',
+            'categoria': Categoria.objects.get(id=2),
+            'nombre': 'Chaleco de punto',
+            'descripcion': 'Este chaleco de punto con flores añade un toque de encanto y calidez a tu look. Su diseño floral y tejido suave lo hacen perfecto para cualquier temporada. Versátil y elegante, es ideal para combinar con tus prendas favoritas. ¡Incorpora esta pieza única a tu guardarropa!',
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
@@ -337,49 +336,48 @@ def poblar_bd(test_user_email=''):
         {
             'id': 15,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Total War: Warhammer III',
-            'descripcion': 'Total War: Warhammer III es un juego de estrategia en tiempo real y por turnos ambientado en el mundo de fantasía de Warhammer. El juego presenta cuatro razas jugables: Kislev, Cathay, Khorne y Nurgle, cada una con sus propias unidades, mecánicas y objetivos de campaña. Los jugadores pueden liderar a sus ejércitos en batallas masivas en tiempo real y gestionar sus imperios en un mapa de campaña por turnos.',
-            'precio': 59990,
+            'nombre': 'Conjunto de 2 piezas',
+            'descripcion': 'Un conjunto elegante y moderno en tonos de verde y azul a cuadros. Incluye una camisa de manga largo medio y pantalones coordinados, ambos con un diseño cómodo y contemporáneo. Perfecto para quienes buscan estilo y versatilidad en su vestimenta diaria.',
+            'precio': 21990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
             'imagen': 'productos/000015.jpg'
         },
         {
             'id': 16,
-            'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Age of Empires IV',
-            'descripcion': 'Age of Empires IV es un juego de estrategia en tiempo real desarrollado por Relic Entertainment y publicado por Xbox Game Studios. El juego es la cuarta entrega principal de la serie Age of Empires y fue lanzado en octubre de 2021. El juego presenta ocho civilizaciones jugables, cada una con sus propias unidades, tecnologías y edificios únicos.',
-            'precio': 59990,
+            'categoria': Categoria.objects.get(id=2),
+            'nombre': 'Camisa',
+            'descripcion': 'Una camisa de manga corta con estampados inspirados en el kimono japonés. Diseñada para brindar estilo y confort, esta prenda combina patrones tradicionales con un corte moderno y versátil. Ideal para quienes buscan una opción única y sofisticada en su vestimenta diaria.',
+            'precio': 9990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
             'imagen': 'productos/000016.jpg'
         },
-        # Categoría "RPG" (4 juegos)
         {
             'id': 17,
-            'categoria': Categoria.objects.get(id=1),
-            'nombre': 'The Witcher 3: Wild Hunt',
-            'descripcion': 'The Witcher 3: Wild Hunt es un juego de rol de acción de mundo abierto desarrollado y publicado por CD Projekt Red. El juego sigue a Geralt de Rivia, un cazador de monstruos profesional conocido como brujo, mientras busca a su hija adoptiva, Ciri, quien está siendo perseguida por la Cacería Salvaje, una fuerza espectral que busca usar sus poderes para sus propios fines.',
-            'precio': 29990,
+            'categoria': Categoria.objects.get(id=4),
+            'nombre': 'Cartera',
+            'descripcion': 'Una cartera elegante y funcional, diseñada para complementar cualquier estilo.',
+            'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
             'imagen': 'productos/000017.jpg'
         },
         {
             'id': 18,
-            'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Final Fantasy VII Remake',
-            'descripcion': 'Final Fantasy VII Remake es una reimaginación del clásico juego de rol de 1997. El juego sigue a Cloud Strife, un ex-SOLDADO que se une a un grupo eco-terrorista llamado AVALANCHE para luchar contra la megacorporación Shinra, que está drenando la energía vital del planeta.',
-            'precio': 59990,
+            'categoria': Categoria.objects.get(id=4),
+            'nombre': 'Corbata',
+            'descripcion': 'Una corbata clásica y sofisticada, perfecta para añadir un toque de estilo a cualquier conjunto.',
+            'precio': 5990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 5,
             'imagen': 'productos/000018.jpg'
         },
         {
             'id': 19,
-            'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Cyberpunk 2077',
-            'descripcion': 'Cyberpunk 2077 es un juego de rol de acción de mundo abierto desarrollado y publicado por CD Projekt Red. El juego se desarrolla en Night City, una megaciudad futurista obsesionada con el poder, el glamour y la modificación corporal. Los jugadores asumen el papel de V, un mercenario que puede ser personalizado en términos de género, apariencia y trasfondo.',
+            'categoria': Categoria.objects.get(id=4),
+            'nombre': 'Mocasines',
+            'descripcion': 'Mocasines que destacan por su estampado de leopardo, ideales para quienes buscan un estilo audaz y distinguido en calzado.',
             'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
@@ -388,9 +386,9 @@ def poblar_bd(test_user_email=''):
         {
             'id': 20,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Diablo IV',
-            'descripcion': 'Diablo IV es un juego de rol de acción de mazmorras desarrollado y publicado por Blizzard Entertainment. Es la cuarta entrega principal de la serie Diablo y fue lanzado en junio de 2023. El juego se desarrolla en un mundo oscuro y gótico llamado Santuario, donde los jugadores luchan contra las fuerzas del infierno.',
-            'precio': 69990,
+            'nombre': 'Vestido',
+            'descripcion': 'Un vestido elegante y sin tirantes, ideal para ocasiones especiales y eventos formales.',
+            'precio': 14990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
             'imagen': 'productos/000020.jpg'

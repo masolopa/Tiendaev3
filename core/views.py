@@ -220,19 +220,19 @@ def boleta(request, nro_boleta):
     
     boleta= None
     detalle_boleta = None
-    if boleta.objects.filter().exists():
-        boleta = boleta.objects.get(nro_boleta=nro_boleta)
+    if Boleta.objects.filter(nro_boleta=nro_boleta).exists():
+        boleta = Boleta.objects.get(nro_boleta=nro_boleta)
         boleta_es_del_usuario = Boleta.objects.filter(nro_boleta=nro_boleta, cliente=request.user.perfil).exists()
         if boleta_es_del_usuario or request.user.is_staff:
             detalle_boleta = DetalleBoleta.objects.filter(boleta=boleta)
         else:
-            messages.error(request,f'Lo siento la boleta NRO{nro_boleta} no existe en la base de datos.')
-    # CREAR: lógica para ver la boleta
-    
-    # CREAR: variable de contexto para enviar boleta y detalle de la boleta
+            messages.error(request,f'Lo siento la boleta NRO{nro_boleta} pertenece a {boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}.')
+            boleta= None
+    else:
+        messages.error(request,f'Lo siento la boleta NRO{nro_boleta} no existe en la base de datos.')
     context = {
         'boleta': boleta,
-        'detalle_boleta': detalle_boleta,
+        'detalle_boleta': detalle_boleta
      }
 
     return render(request, 'core/boleta.html', context)
@@ -277,12 +277,11 @@ def productos(request, accion, id):
         if form.is_valid():
             producto= form.save()
             ProductoForm(instance=producto)
-            messages.success(request,f'El producto"{str(Producto)}"se logro {accion} correctamente.')
-            return redirect(productos,'actualizar', Producto.id)
+            messages.success(request,f'El producto"{str(producto)}"se logro {accion} correctamente.')
+            return redirect(productos,'actualizar', producto.id)
         else:
-            show_form_errors(request,[form])
+            show_form_errors(request, [form])
         
-
     if request.method == 'GET':
         if accion == 'crear':
                 form = ProductoForm() 
@@ -295,7 +294,6 @@ def productos(request, accion, id):
                 return redirect(productos, 'crear', '0')
             form = ProductoForm(instance=Producto.objects.get(id=id))
 
-    # CREAR: variable de contexto para enviar el formulario y todos los productos
     context = { 
         'form':form,
         'productos':Producto.objects.all()
@@ -355,11 +353,13 @@ def usuarios(request, accion, id):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def bodega(request):
-
     if request.method == 'POST':
-
-        # CREAR: acciones para agregar productos a la bodega
-        pass
+        form = BodegaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('nombre_de_la_vista')  # Redirige a la vista que desees después de guardar el producto
+    else:
+        form = BodegaForm()
 
     registros = Bodega.objects.all()
     lista = []
@@ -375,11 +375,12 @@ def bodega(request):
         lista.append(item)
 
     context = {
-        'form': BodegaForm(),
+        'form': form,
         'productos': lista,
     }
-    
+
     return render(request, 'core/bodega.html', context)
+
 
 
 @user_passes_test(es_personal_autenticado_y_activo)

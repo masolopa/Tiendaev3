@@ -3,21 +3,14 @@
 {% load custom_filters %}
 
 {% block content %}
-
-    {% comment %} 
-    
-    {% if boleta %} 
-    
-    {% endcomment %}
-    
-      <div class="row">
+        <div class="row">
             <div class="col-6 text-right">
                 <h1>
 
-                    Boleta N°
+                    {{'NRO Boleta'}}
                     
-                    {{boleta.nro_boleta}}
-                    
+                    {{boleta.nro_boleta }}
+                
                     de 
                     
                     {{boleta.cliente.usuario.first_name}}
@@ -25,222 +18,57 @@
 
                 </h1>
             </div>
-
-          <!-- Estado de la boleta -->
-          <div class="col-6">
-            <table class="mb-3" style="float: right">
-                <tr>
-                    <td class="td_img_estado_boleta"> 
-                        <img src="{% static 'core/img/vendido.png' %}" style="width: 75px;">
-                    </td>
-                    <td class="td_img_estado_boleta"> 
-                        <img src="{% static 'core/img/despachado.png' %}" style="width: 75px;">
-                    </td>
-                    <td class="td_img_estado_boleta"> 
-                        <img src="{% static 'core/img/entregado.png' %}" style="width: 75px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td_fec_estado_boleta"> 
-                        Vendido <br> 
-                        {{boleta.fecha_venta|formatear_fecha}}
-                    <td class="td_fec_estado_boleta"> 
-                        Despachado <br> 
-                        {{boleta.fecha_despacho|formatear_fecha}}
-                    <td class="td_fec_estado_boleta"> 
-                        Entregado <br> 
-                        {{boleta.fecha_entrega|formatear_fecha}}
-                </tr>
-            </table>
-          </div>
-      </div>
-
-      <!-- Tabla de productos de la boleta -->
-      <div class="row">
-        <div class="col">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>{{item.bodega.producto.categoria.nombre}}</th>
-                <th>{{item.bodega.producto.nombre}}</th>
-                <th>{{item.precio|formatear_dinero}}</th>
-                <th>{{item.descuento_subscriptor|formatear_porcentaje}}</th>
-                <th>{{item.descuento_oferta|formatear_porcentaje}}</th>
-                <th>{{item.descuento_total|formatear_porcentaje}}</th>
-                <th>{{item.descuentos|formatear_dinero}}</th>
-                <th>{{item.precio_a_pagar|formatear_dinero}}</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Top</td>
-                <td>Polera</td>
-                <td>5.000</td>
-                <td>30%</td>
-                <td>0%</td>
-                <td>30%</td>
-                <td>0</td>
-                <td>5.000</td>
-              </tr>
-              <tr>
-                <td>Bottom</td>
-                <td>Falda</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Accesories</td>
-                <td>Lentes</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Bottom</td>
-                <td>Short</td>
-                <td>0</td>
-                <td>30%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Bottom</td>
-                <td>Falda</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Top</td>
-                <td>Polerón</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Calzado</td>
-                <td>Botas</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Bottom</td>
-                <td>Pantalón</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Top</td>
-                <td>Chaqueta</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>Top</td>
-                <td>Chaleco</td>
-                <td>0</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{{boleta.monto_sin_iva|formatear_dinero}}</td>
-                <td>
-                  <input
-                    type="text"
-                    readonly
-                    name="precio_sin_iva"
-                    id="precio_sin_iva"
-                    value="$0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{{boleta.iva|formatear_dinero}}</td>
-                <td>
-                  <input
-                    type="text"
-                    readonly
-                    name="valor_del_iva"
-                    id="valor_del_iva"
-                    value="$0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{{boleta.total_a_pagar|formatear_dinero}}</td>
-                <td>
-                  <input
-                    type="text"
-                    readonly
-                    name="total_a_pagar"
-                    id="total_a_pagar"
-                    value="$0"
-                  />
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+            <div class="col-6">
+              <div class="btn-group">
+                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
+                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
+                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-primary">Despachar</a>
+                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-secondary">Entregar</a>
+            </div>
+                <table class="mb-3" style="float: right">
+                    <tr>
+                        <td class="td_img_estado_boleta"> 
+                            <img src="{% static 'core/img/vendido.png' %}" style="width: 75px;">
+                        </td>
+                        <td class="td_img_estado_boleta"> 
+                            <img src="{% static 'core/img/despachado.png' %}" style="width: 75px;">
+                        </td>
+                        <td class="td_img_estado_boleta"> 
+                            <img src="{% static 'core/img/entregado.png' %}" style="width: 75px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_fec_estado_boleta"> 
+                            Vendido <br> 
+                            {{boleta.fecha_venta|formatear_fecha}}
+                        <td class="td_fec_estado_boleta"> 
+                            Despachado <br> 
+                            {{boleta.fecha_despacho|formatear_fecha}}
+                        <td class="td_fec_estado_boleta"> 
+                            Entregado <br> 
+                            {{boleta.fecha_entrega|formatear_fecha}}
+                    </tr>
+                </table>
+            </div>
         </div>
-      </div>
-    </div>
-    
-    {% else %}
+
+        
+      {%if boleta=='Entregado'%}
+         <td> {{item.bodega.producto.categoria.nombre}}</td>
+         <td>{{item.bodega.producto.nombre}}</td>
+         <td>{{item.precio|formatear_dinero}}</td>
+         <td>{{item.descuento_subscriptor|formatear_porcentaje}}</td>
+         <td>{{item.descuento_oferta|formatear_porcentaje}}</td>
+         <td>{{item.descuento_total|formatear_porcentaje}}</td>
+         <td>{{item.descuentos|formatear_dinero}}</td>
+         <td>{{item.precio_a_pagar|formatear_dinero}}</td>  
+         <td>{{boleta.monto_sin_iva|formatear_dinero}}</td>
+         <td>{{boleta.iva|formatear_dinero}}</td>
+         <td>{{boleta.total_a_pagar|formatear_dinero}}</td>
+
+  {% else %}
 
         <h1> No se puede mostrar la boleta </h1>
 
-    {% endif %} 
-    
-
-    
+  {% endif %}       
 {% endblock content %}

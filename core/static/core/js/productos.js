@@ -10,9 +10,9 @@ $(document).ready(function() {
     }
 
     // Asignar placeholders para ayudar a los usuarios
-    $('#id_nombre').attr('placeholder', 'Ej: Diablo 4, Uncharted 2, God of War 2');
-    $('#id_descripcion').attr('placeholder', 'Ej: Diablo IV es un juego de rol de acción de mazmorras desarrollado y publicado por Blizzard Entertainment.');
-    $('#id_precio').attr('placeholder', 'Ej: 35000');
+    $('#id_nombre').attr('placeholder', 'Ej: Polera estampada');
+    $('#id_descripcion').attr('placeholder', 'Ej: Polera roja');
+    $('#id_precio').attr('placeholder', 'Ej: 5000');
     $('#id_descuento_subscriptor').attr('placeholder', 'Ej: 10');
     $('#id_descuento_oferta').attr('placeholder', 'Ej: 5');
 
